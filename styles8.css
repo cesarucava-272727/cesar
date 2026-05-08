@@ -1,0 +1,337 @@
+:root{
+    /* Identidad */
+    --color-primary:      #0D1B2A; /*color principal*/
+    --color-header-bg:    #1A2F45; /*cabecera*/
+    --color-accent:       #0E7C6B; /*para los textos*/
+    --color-accent-hover: #12A68D; /*mause encima*/
+    --color-mint:         #C8F5EC; /*para textos*/
+    --color-surface:      #F2F6F8; /*para tarjetas*/
+    --color-white:        #FFFFFF; /*blanco puro para algunos textos*/
+    --color-text-main:    #0D1B2A; /*titulos principales*/
+    --color-text-muted:   #6B7280; /*para algunos botones*/
+    --color-border:       rgba(0,0,0,0.08); /*borde de botones*/
+
+    /* Estados de Tickets */
+    --status-new-bg:      #E8F4FD; /*estatus nuevo*/  --status-new-text:    #185FA5; /*textos de estatus nuevo*/
+    --status-active-bg:   #FFF3CD; /*estatus activo*/  --status-active-text: #854F0B; /*textos de estatus activo*/
+    --status-done-bg:     #D1F2E6; /*ticket realizados*/  --status-done-text:   #0F6E56; /*textos de estatus realizado*/
+    --status-urgent-bg:   #FCE8E8; /*ticket urgentes*/  --status-urgent-text: #A32D2D; /*texto de tareas urgentes**/
+    --status-closed-bg:   #EBEBEB; /*ticket cerrados*/  --status-closed-text: #5F5E5A; /*texto ticket cerrados*/
+
+    /* Espacios y formas */
+    --font-main:   'Segoe UI', system-ui, sans-serif; /*tipo de letra para titulos principales*/
+    --radius-sm:   6px; /*borde botones pequeños*/
+    --radius-md:   10px; /*borde botones medianos*/
+    --radius-lg:   16px; /*borde botones grandes*/
+    --shadow-card: 0 2px 8px rgba(13, 27, 42, 0.08); /*sombra de tarjetas*/
+}
+
+/*restear todos los estilos que viene por defecto el after y before son las seudoclases del estilo principal*/
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  background-color: var(--color-surface);
+  color: var(--color-text-main);
+}
+
+.app-header {
+  background-color: var(--color-header-bg);
+  color: var(--color-mint);
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.logo {
+  margin: 0;
+  font-size: 1.3rem;
+  color: var(--color-mint);
+}
+
+.main-nav a {
+  color: var(--color-mint);
+  text-decoration: none;
+  margin-left: 16px;
+  font-size: 0.95rem;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 480px){
+    main { padding: 24px; }
+}
+
+@media (min-width: 1024px){
+    main { padding: 40px; }
+}
+
+h2 {
+  margin: 0 0 12px 0;
+  font-size: 1.1rem;
+  color: var(--color-text-main);
+}
+
+/* Formulario */
+form {
+  background-color: var(--color-white);
+  padding: 20px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+form label {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-top: 8px;
+}
+
+form input,
+form textarea,
+form select {
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+form button {
+  margin-top: 16px;
+  padding: 12px;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Tickets */
+.ticket-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ticket {
+  background-color: var(--color-white);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.ticket h3 {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+}
+
+.ticket p {
+  margin: 0 0 12px 0;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background-color: var(--status-closed-bg);
+  color: var(--status-closed-text);
+  border-radius: 999px;
+  font-size: 0.75rem;
+}
+
+
+@media (min-width: 480px){
+    .ticket-list{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .ticket {
+        flex: 1 1 calc(50% - 8px)  /* tomamos el 50% de la totalidad de pixeles disponibles y restamos 8px para que 
+                                      cada item tenga esa dimesión  */  
+    }
+}
+
+@media (min-width: 1024px){
+    .ticket {
+        flex: 1 1 calc(33.33% - 16px)  /* tomamos el 33.33% de la totalidad de pixeles disponibles y restamos 16px para que 
+                                      cada item tenga esa dimesión  */  
+    }
+}
+
+
+/* para el menu de navegacion */
+
+
+.menu-toggle{ /* para que el chexbox no se va */
+    display: none;
+}
+
+.menu-btn{ /* para que visibele el boton */
+    font-size: 1.8rem;
+    color: var(--color-mint);
+    cursor: pointer;
+    user-select: none;  /*evitar que se seleccione el icono al tocar*/
+    line-height: 1;
+}
+
+.drawer{ /*para que el menu no se visualise en primera instancia que este oculto*/
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 260px;
+    height: 100vh;
+    background-color: var(--color-header-bg);
+    padding: 60px 20px 20px;
+    transition: left 0.3s ease;
+    z-index: 20;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+}
+
+.drawer-nav{ /*estilos al menu*/
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.drawer-nav a{ /*a cada opcion del menu*/
+    color: var(--color-mint);
+    text-decoration: none;
+    padding: 12px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    transition: background 0.2s ease;
+}
+
+.drawer-nav a:hover { /*cuando me posicione en alguna opcion del menu*/
+  background-color: rgba(255,255,255,0.08);
+}
+
+.drawer-backdrop { /*cuando se oculte*/
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 10;
+  cursor: pointer;
+}
+
+
+.menu-toggle:checked ~ .drawer { /*cuando el check se marca el drawer entra y es visible*/
+  left: 0;
+}
+
+.menu-toggle:checked ~ .drawer-backdrop { /**/
+  display: block;
+}
+
+.main-nav { /**/
+  display: none;
+}
+
+/*solo se habilite el menu cuando sea un dispositivo movil*/
+@media (min-width: 480px){
+  .menu-btn,
+  .drawer,
+  .drawer-backdrop{
+    display: none !important; /*no importa si el menu esta desplegado quitalo*/
+  }
+
+  .main-nav{
+    display: flex;
+    gap: 16px;
+  }
+}
+
+/*logica para los estados*/
+.badge{ /*para el estilo de nuevo-en curso-urgente-resuelto*/
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height:1.4 ;
+}
+
+.badge--new { /*ticket nuevo*/
+  background-color: var(--status-new-bg);
+  color: var(--status-new-text);
+}
+
+
+.badge--active { /*ticket em curso*/
+  background-color: var(--status-active-bg);
+  color: var(--status-active-text);
+}
+
+.badge--done { /*ticket resuelto*/
+  background-color: var(--status-done-bg);
+  color: var(--status-done-text);
+}
+
+.badge--urgent { /*ticket urgente*/
+  background-color: var(--status-urgent-bg);
+  color: var(--status-urgent-text);
+}
+
+.badge--closed { /*ticket cerrado*/
+  background-color: var(--status-closed-bg);
+  color: var(--status-closed-text);
+}
+
+.barra-estado{
+  display: flex; /*para que contega el texto, contador y botton y lo alinea en una columna*/ 
+  justify-content: space-between; /*que el contenido se alinee al espacio disponible*/
+  align-items: center; /*alinear los items dentro del div para que se centren*/
+  margin-bottom: 1.25rem; /*un margen hacia abajo*/
+  padding: 0.5rem 0; /*padding */
+}
+
+.barra-estado p{
+  font-size: 0.9rem; /*tamaño de la letra*/
+  color: var(--color-text-muted); /*color*/
+}
+
+#contador{
+  font-weight: 700; /*tamaño de la letra*/
+  color: var(--color-accent); /*color*/
+}
+
+.btn-secundario{
+  background-color: transparent; /*color de fondo*/
+  color: var(--color-text-muted); /*color de texto*/
+  border: 1px solid var(--color-border); /*color del borde*/
+  border-radius: var(--radius-sm); /*redondeo a las esquinas*/
+  padding: 0.45rem 1rem; /*padding*/
+  font-size: 0.87rem; /*tamaño de la letra*/
+  cursor: pointer; /*cuando el curso este pasando que se vea el puntero*/
+  transition: background-color 0.2s, color 0.2s; /*las transciciones para el color*/
+}
+
+/*estilos cuando el mause este enciama del boton*/
+.btn-secundario:hover{
+  background-color: var(--color-surface);
+  color: var(--color-text-main);
+}
